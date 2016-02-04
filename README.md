@@ -2,7 +2,7 @@
 > The server of ls-tank 
 
 ### Preview
-`websocket` & `Restful API`
+`websocket` & `Restful API` 
 
 ### License
 MIT
