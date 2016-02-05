@@ -19,6 +19,7 @@
   "dependencies": {
     "gulp": "~3.9.0",
     "gulp-nodemon": "~2.0.6",
+    "koa": "~1.1.2",
     "socket.io": "~1.4.5"
   }
 }
