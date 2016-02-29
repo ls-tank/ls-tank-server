@@ -2,12 +2,14 @@
 var events = require('events');
 
 class Tank extends events {
-  constructor(uid) {
+  constructor() {
     super();
-    this.uid = uid;
+    this.direction = 0;
   }
 
-  
+  setDirection(direction) {
+    this.direction = direction
+  }
 }
 
 module.exports = Tank

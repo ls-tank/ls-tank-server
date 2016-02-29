@@ -4,15 +4,23 @@ var events = require('events');
 class TanksSet extends events {
   constructor() {
     super();
-    this._tanks = [];
+    this._tanks = {};
   }
 
-  add(tank) {
-    this._tanks.push(tank);
+  set(uid, tank) {
+    this._tanks[uid] = tank; 
   }
 
-  remove(tank) {
-    // todo
+  get(uid) {
+    return this._tanks[uid];
+  }
+
+  getAll() {
+    return this._tanks;
+  }
+
+  remove(uid) {
+    delete this._tanks[uid];
   }
 
 }
