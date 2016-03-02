@@ -31,15 +31,15 @@ tankControllers.on('connection', socket => {
     var uid = socketUtil.getUid(socket);
     TanksSet.remove(uid);
     bigScreen.emit('b-leave', {
-      tanksSet: TanksSet.getAll()
+      uid: socketUtil.getUid(socket)
     });
   });
 
   // 客户端发来方向控制信息
   socket.on('c-direction', event => {
-    console.log(event);
     var tank = TanksSet.get(event.uid);
     tank.setDirection(event.direction);
+    bigScreen.emit('b-direction', event);
   });
 
   // 客户端发来开火信息
