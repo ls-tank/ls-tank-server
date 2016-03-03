@@ -10,13 +10,8 @@ var tankControllers = sio.of('/tankControllers');
 var bigScreen = sio.of('/bigScreen');
 
 tankControllers.on('connection', socket => {
-  // 客户端连接
-  // console.log('connect...');
   
-  // 客户端断开
-  // socket.on('disconnect', event => console.log('disconnect...'));
-
-  // 客户端进入游戏
+  // 客户端连接
   socket.on('c-enter', event => {
     console.log('player enter');
     TanksSet.set(socketUtil.getUid(socket), new Tank());
@@ -25,7 +20,7 @@ tankControllers.on('connection', socket => {
     });
   });
 
-  // 客户端离开游戏
+  // 客户端断开
   socket.on('c-leave', event => {
     console.log('player leave');
     var uid = socketUtil.getUid(socket);
@@ -37,14 +32,13 @@ tankControllers.on('connection', socket => {
 
   // 客户端发来方向控制信息
   socket.on('c-direction', event => {
-    var tank = TanksSet.get(event.uid);
-    tank.setDirection(event.direction);
     bigScreen.emit('b-direction', event);
   });
 
   // 客户端发来开火信息
   socket.on('c-fire', event => {
     console.log(event);
+    bigScreen.emit('b-fire', event);
   });
 });
 
