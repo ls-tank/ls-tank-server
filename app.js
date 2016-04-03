@@ -13,18 +13,16 @@ tankControllers.on('connection', socket => {
 
   // 客户端连接
   console.log('player enter');
-  TanksSet.set(socketUtil.getUid(socket), new Tank());
+  console.log(socketUtil.getData(socket))
   bigScreen.emit('b-enter', {
-    uid: socketUtil.getUid(socket)
+    data: socketUtil.getData(socket)
   });
 
   // 客户端断开
   socket.on('disconnect', event => {
     console.log('player leave');
-    var uid = socketUtil.getUid(socket);
-    TanksSet.remove(uid);
     bigScreen.emit('b-leave', {
-      uid: socketUtil.getUid(socket)
+      data: socketUtil.getData(socket)
     });
   });
 
@@ -42,7 +40,8 @@ tankControllers.on('connection', socket => {
 });
 
 bigScreen.on('connection', socket => {
-
+  // 大屏幕链接
+  console.log('bigscreen connect');
 });
 
 
