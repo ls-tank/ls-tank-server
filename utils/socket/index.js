@@ -5,6 +5,7 @@ exports.getData = function(s) {
     uid: _data.uid,
     head: +_data.head,
     body: +_data.body,
-    wheel: +_data.wheel
+    wheel: +_data.wheel,
+    nickname: _data.nickname
   }
 };
