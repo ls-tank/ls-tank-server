@@ -42,14 +42,27 @@ tankControllers.on('connection', socket => {
   socket.on('c-fire', event => {
     bigScreen.emit('b-fire', event);
   });
+
+  socket.on('c-next', event => {
+    var data = socketUtil.getData(socket);
+    clients[data.uid] = socket;
+    bigScreen.emit('b-enter', {
+      data: data
+    });
+  });
 });
 
 bigScreen.on('connection', socket => {
   // 大屏幕链接
   console.log('bigscreen connect');
 
-  socket.on('score', event => {
-    console.log(event); // todo
+  socket.on('b-score', event => {
+    // console.log(event);
+    clients[event.data.winner].emit('c-score', event);
+  });
+
+  socket.on('b-boom', event => {
+    clients[event.data.loser].emit('c-boom');
   });
 });
 
